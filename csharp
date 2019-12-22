@@ -1,0 +1,52 @@
+
+using System;
+
+public class Employee
+{
+    public double EmployeePay { get; set; }
+	public double Deduction { get; set; }
+    public void CalculateSalary()
+    {
+        int counter; // number of values
+        double salary; // employees salary
+        double hours; // hours employee has worked
+        double overtime; // calculate how many hours worked over 40
+        double timehalf; // calculate overtime pay
+		double tax; // calculate tax from paycheck
+        counter = 1;
+        while (counter <= 3)
+        {
+            Console.Write("\n Please enter employee's hourly salary: ");
+            salary = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Please enter number of hours employee worked: ");
+            hours = Convert.ToDouble(Console.ReadLine());
+
+            if (hours <= 40)
+				{ 
+				EmployeePay = salary * hours;
+				tax = EmployeePay * .12; // 12% is the tax bracket for $9701 - $39475
+				Deduction = EmployeePay - tax;
+            Console.Write("Weekly pay for employee is: ${0}", Deduction);
+				}
+            else
+				{
+				overtime = hours - 40;
+                timehalf = salary * 1.5;
+                EmployeePay = ((salary * 40) + (overtime * timehalf));
+				tax = EmployeePay * .12;
+				Deduction = EmployeePay - tax;
+                Console.Write("Weekly pay for employee is: ${0}", Deduction);
+				}
+            counter = counter + 1;
+        }
+    }
+        
+           public static void Main(String[] args)
+             {
+            Employee application = new Employee();
+            application.CalculateSalary();
+              }
+         
+    
+}
+
